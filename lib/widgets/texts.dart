@@ -30,3 +30,4 @@ class SecondText extends StatelessWidget {
     );
   }
 }
+

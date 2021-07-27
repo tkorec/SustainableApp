@@ -1,18 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:form_field_validator/form_field_validator.dart';
 
-class DonationFormFiled extends StatelessWidget {
+class DonationFormField extends StatelessWidget {
   final String labelText;
-  DonationFormFiled({Key? key, required this.labelText}) : super(key: key);
+  final FieldValidator validator;
+  DonationFormField(
+      {Key? key, required this.labelText, required this.validator})
+      : super(key: key);
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      autofocus: true,
+      validator: validator,
       decoration: InputDecoration(
         labelText: labelText,
-        enabledBorder: OutlineInputBorder(
+        labelStyle: TextStyle(
+          color: Colors.black,
+        ),
+        border: OutlineInputBorder(
           borderSide: BorderSide(color: Colors.black, width: 1.0),
         ),
         focusedBorder: OutlineInputBorder(
           borderSide: BorderSide(color: Colors.black, width: 1.0),
+        ),
+        focusedErrorBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: Colors.red, width: 1.0),
         ),
       ),
     );

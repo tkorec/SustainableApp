@@ -5,6 +5,7 @@ import 'package:second_app/screens/donate/freeReturns.dart';
 import 'package:second_app/screens/donate/points.dart';
 import 'package:second_app/screens/donate/checkout.dart';
 import 'package:second_app/screens/donate/donationComplete.dart';
+import 'package:second_app/screens/onboarding/onboarding.dart';
 
 void main() {
   runApp(MyApp());
@@ -15,7 +16,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: '/',
+      initialRoute: '/onboarding',
       routes: {
         '/': (context) => DonatePage(),
         '/order-donation-bag': (context) => OurStepper(),
@@ -23,6 +24,7 @@ class MyApp extends StatelessWidget {
         '/order-donation-bag/free-returns/points': (context) => DonateForPoints(),
         '/order-donation-bag/free-returns/points/checkout': (context) => DonationCheckout(),
         '/order-donation-bag/free-returns/points/checkout/donation-complete': (context) => DonationComplete(),
+        '/onboarding': (context) => SignInOnboarding(),
       },
     );
   }
