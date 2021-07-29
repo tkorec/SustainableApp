@@ -28,7 +28,7 @@ class _DonationCheckoutState extends State<DonationCheckout> {
             child: Image.asset('assets/images/progress_four.png'),
             padding: EdgeInsets.only(left: 40, right: 40, top: 20),
           ),
-          SizedBox(height: 30),
+          SizedBox(height: 40),
           //CustomProgressBar(imageSource: 'assets/images/progress_four.png'),
           Expanded(
             child: Form(
@@ -38,11 +38,13 @@ class _DonationCheckoutState extends State<DonationCheckout> {
                 padding: EdgeInsets.symmetric(horizontal: 20),
                 children: <Widget>[
                   DonationFormField(
+                      textInputAction: TextInputAction.next,
                       labelText: 'Name',
                       validator:
                           RequiredValidator(errorText: 'Name is required')),
                   SizedBox(height: 15),
                   DonationFormField(
+                    textInputAction: TextInputAction.next,
                     labelText: 'Email',
                     validator: MultiValidator(
                       [
@@ -53,6 +55,7 @@ class _DonationCheckoutState extends State<DonationCheckout> {
                   ),
                   SizedBox(height: 15),
                   DonationFormField(
+                    textInputAction: TextInputAction.next,
                     labelText: 'Phone number',
                     validator: MultiValidator(
                       [
@@ -65,21 +68,25 @@ class _DonationCheckoutState extends State<DonationCheckout> {
                   ),
                   SizedBox(height: 15),
                   DonationFormField(
+                    textInputAction: TextInputAction.next,
                     labelText: 'Address line 1',
                     validator:
                         RequiredValidator(errorText: 'Address is required'),
                   ),
                   SizedBox(height: 15),
                   DonationFormFieldWithoutValidator(
+                    textInputAction: TextInputAction.next,
                     labelText: 'Address line 2',
                   ),
                   SizedBox(height: 15),
                   DonationFormField(
+                    textInputAction: TextInputAction.next,
                     labelText: 'City',
                     validator: RequiredValidator(errorText: 'City is required'),
                   ),
                   SizedBox(height: 15),
                   DonationFormField(
+                    textInputAction: TextInputAction.done,
                     labelText: 'Post Code',
                     validator: MultiValidator(
                       [
@@ -97,7 +104,7 @@ class _DonationCheckoutState extends State<DonationCheckout> {
             title: 'Complete order – £0',
             onPressed: () {
               if (formKey.currentState!.validate()) {
-                print("Validated");
+                Navigator.pushNamed(context, '/order-donation-bag/free-returns/points/checkout/donation-complete');
               } else {
                 print("Not validate");
               }
