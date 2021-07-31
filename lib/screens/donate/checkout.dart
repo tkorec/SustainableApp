@@ -5,6 +5,8 @@ import 'package:second_app/widgets/appbar.dart';
 //import 'package:second_app/widgets/progressbar.dart';
 import 'package:second_app/widgets/forms.dart';
 import 'package:form_field_validator/form_field_validator.dart';
+//import 'package:firebase_core/firebase_core.dart';
+//import 'package:cloud_firestore/cloud_firestore.dart';
 
 class DonationCheckout extends StatefulWidget {
   @override
@@ -12,6 +14,16 @@ class DonationCheckout extends StatefulWidget {
 }
 
 class _DonationCheckoutState extends State<DonationCheckout> {
+  //final FirebaseFirestore firestore = FirebaseFirestore.instance;
+
+  TextEditingController etName = new TextEditingController();
+  TextEditingController etMail = new TextEditingController();
+  TextEditingController etPhone = new TextEditingController();
+  TextEditingController etAddressOne = new TextEditingController();
+  TextEditingController etAddressTwo = new TextEditingController();
+  TextEditingController etCity = new TextEditingController();
+  TextEditingController etPostCode = new TextEditingController();
+
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   @override
@@ -29,7 +41,6 @@ class _DonationCheckoutState extends State<DonationCheckout> {
             padding: EdgeInsets.only(left: 40, right: 40, top: 20),
           ),
           SizedBox(height: 40),
-          //CustomProgressBar(imageSource: 'assets/images/progress_four.png'),
           Expanded(
             child: Form(
               autovalidateMode: AutovalidateMode.always,
@@ -40,12 +51,14 @@ class _DonationCheckoutState extends State<DonationCheckout> {
                   DonationFormField(
                       textInputAction: TextInputAction.next,
                       labelText: 'Name',
+                      controller: etName,
                       validator:
                           RequiredValidator(errorText: 'Name is required')),
                   SizedBox(height: 15),
                   DonationFormField(
                     textInputAction: TextInputAction.next,
                     labelText: 'Email',
+                    controller: etMail,
                     validator: MultiValidator(
                       [
                         RequiredValidator(errorText: 'Email is required'),
@@ -57,6 +70,7 @@ class _DonationCheckoutState extends State<DonationCheckout> {
                   DonationFormField(
                     textInputAction: TextInputAction.next,
                     labelText: 'Phone number',
+                    controller: etPhone,
                     validator: MultiValidator(
                       [
                         RequiredValidator(
@@ -70,6 +84,7 @@ class _DonationCheckoutState extends State<DonationCheckout> {
                   DonationFormField(
                     textInputAction: TextInputAction.next,
                     labelText: 'Address line 1',
+                    controller: etAddressOne,
                     validator:
                         RequiredValidator(errorText: 'Address is required'),
                   ),
@@ -77,17 +92,20 @@ class _DonationCheckoutState extends State<DonationCheckout> {
                   DonationFormFieldWithoutValidator(
                     textInputAction: TextInputAction.next,
                     labelText: 'Address line 2',
+                    controller: etAddressTwo,
                   ),
                   SizedBox(height: 15),
                   DonationFormField(
                     textInputAction: TextInputAction.next,
                     labelText: 'City',
+                    controller: etCity,
                     validator: RequiredValidator(errorText: 'City is required'),
                   ),
                   SizedBox(height: 15),
                   DonationFormField(
                     textInputAction: TextInputAction.done,
                     labelText: 'Post Code',
+                    controller: etPostCode,
                     validator: MultiValidator(
                       [
                         RequiredValidator(errorText: 'Post Code is required'),
@@ -107,6 +125,7 @@ class _DonationCheckoutState extends State<DonationCheckout> {
                 Navigator.pushNamed(context, '/order-donation-bag/free-returns/points/checkout/donation-complete');
               } else {
                 print("Not validate");
+                print(etPostCode.text);
               }
             },
             margin: EdgeInsets.only(bottom: 40, left: 15, right: 15, top: 40),
@@ -118,56 +137,4 @@ class _DonationCheckoutState extends State<DonationCheckout> {
   }
 }
 
-/*
-Container(
-            height: 700,
-            child: GridView.count(
-              crossAxisCount: 1,
-              //mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                DonationFormField(
-                  labelText: 'Name',
-                  validator: RequiredValidator(errorText: 'Name is required'),
-                ),
-                SizedBox(height: 15.0),
-                DonationFormField(
-                  labelText: 'Email',
-                  validator: MultiValidator([
-                    RequiredValidator(errorText: 'Email is required'),
-                    EmailValidator(errorText: 'Email is not valid'),
-                  ]),
-                ),
-                SizedBox(height: 15.0),
-                DonationFormField(
-                  labelText: 'Phone number',
-                  validator: MultiValidator([
-                    RequiredValidator(errorText: 'Phone number is required'),
-                    PatternValidator(r'(^[0-9]+$)', errorText: 'Only numbers')
-                  ]),
-                ),
-                SizedBox(height: 15.0),
-                DonationFormField(
-                  labelText: 'Address line 1',
-                  validator:
-                      RequiredValidator(errorText: 'Address is required'),
-                ),
-                SizedBox(height: 15.0),
-                DonationFormField(
-                  labelText: 'Address line 2',
-                  validator: RequiredValidator(errorText: ''),
-                ),
-                SizedBox(height: 15.0),
-                DonationFormField(
-                  labelText: 'City',
-                  validator: RequiredValidator(errorText: 'City is required'),
-                ),
-                SizedBox(height: 15.0),
-                DonationFormField(
-                  labelText: 'Post Code',
-                  validator: MultiValidator([
-                    RequiredValidator(errorText: 'Post code is required'),
-                    PatternValidator(r'(^[0-9]+$)', errorText: 'Only numbers')
-                  ]),
-                ),
-                SizedBox(height: 15.0),
-*/
+
